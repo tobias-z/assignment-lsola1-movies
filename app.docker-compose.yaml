@@ -1,0 +1,19 @@
+version: 3
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  elasticsearch:
+    image: bitnami/elasticsearch:latest
+    environment:
+      - ELASTICSEARCH_PORT_NUMBER=9200
+    ports:
+      - "9200:9200"
+    networks:
+      - app-tier
+  movies-app:
+    image: tobiaszimmer/user-api
+    networks:
+      - app-tier
