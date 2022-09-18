@@ -25,7 +25,9 @@ jobs:
           cache: maven
 
       - name: Run tests
-        run: mvn test
+        run: |
+          sleep 5
+          mvn test
 
       - name: Package
         run: mvn package -Dmaven.test.skip=true
