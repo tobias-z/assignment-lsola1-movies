@@ -27,7 +27,6 @@ public class ElasticSearchInitializer {
     public void initializeProducts() throws IOException {
         this.productRepository.deleteAll();
         this.productRepository.saveAll(this.getProductsToInitialize());
-        this.productRepository.findAll().forEach(product -> System.out.println(product.getTitle()));
     }
 
     private List<Product> getProductsToInitialize() throws IOException {
