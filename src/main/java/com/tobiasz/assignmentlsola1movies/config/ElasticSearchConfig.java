@@ -1,5 +1,6 @@
 package com.tobiasz.assignmentlsola1movies.config;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.http.Header;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
@@ -13,13 +14,16 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 
 @Configuration
+@RequiredArgsConstructor
 public class ElasticSearchConfig {
+
+    private final ElasticSearchConfigurationProperties properties;
 
     @Bean(destroyMethod = "close")
     public RestHighLevelClient restClient() {
-        RestClientBuilder builder = RestClient.builder(new HttpHost("localhost", 9200))
+        RestClientBuilder builder = RestClient.builder(new HttpHost(properties.getHost(), properties.getPort()))
                 .setHttpClientConfigCallback(httpClientBuilder -> httpClientBuilder
-                .setDefaultHeaders(Arrays.asList(compatibilityHeaders())));
+                        .setDefaultHeaders(Arrays.asList(compatibilityHeaders())));
 
         return new RestHighLevelClient(builder);
     }
