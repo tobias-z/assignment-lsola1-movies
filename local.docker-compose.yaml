@@ -1,15 +1,12 @@
-version: "3"
+version: "3.2"
 
 services:
   elasticsearch:
-    container_name: elasticsearch
     image: bitnami/elasticsearch:latest
     environment:
       - ELASTICSEARCH_PORT_NUMBER=9200
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
     ports:
       - "9200:9200"
       - "9300:9300"
     volumes:
-      - ./elastic:/usr/share/elasticsearch/data
+      - ./data/elastic:/usr/share/elasticsearch/data

@@ -30,7 +30,7 @@ public class ElasticSearchInitializer {
     }
 
     private List<Product> getProductsToInitialize() throws IOException {
-        return this.objectMapper.readValue(this.resourceFile.getFile(), ProductWrapper.class).getProducts();
+        return this.objectMapper.readValue(this.resourceFile.getInputStream(), ProductWrapper.class).getProducts();
     }
 
     @AllArgsConstructor
