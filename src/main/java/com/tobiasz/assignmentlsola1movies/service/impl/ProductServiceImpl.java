@@ -38,9 +38,6 @@ public class ProductServiceImpl implements ProductService {
                 .search(searchQuery, Product.class, IndexCoordinates.of(PRODUCT_INDEX))
                 .getSearchHits()
                 .stream()
-                .peek(productSearchHit -> {
-                    System.out.println(productSearchHit.getContent().getTitle() + ": " + productSearchHit.getScore());
-                })
                 .map(SearchHit::getContent)
                 .map(ProductDto::productToDto)
                 .collect(Collectors.toList());

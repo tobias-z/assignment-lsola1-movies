@@ -21,8 +21,6 @@ public class ElasticSearchConfig {
 
     @Bean(destroyMethod = "close")
     public RestHighLevelClient restClient() {
-        System.out.println(properties.getHost());
-        System.out.println(properties.getPort());
         RestClientBuilder builder = RestClient.builder(new HttpHost(properties.getHost(), properties.getPort(), "http"))
                 .setHttpClientConfigCallback(httpClientBuilder -> httpClientBuilder
                         .setDefaultHeaders(Arrays.asList(compatibilityHeaders())));
