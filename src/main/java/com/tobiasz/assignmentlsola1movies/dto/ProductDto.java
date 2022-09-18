@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @Builder
 @NoArgsConstructor
-@EqualsAndHashCode
 public class ProductDto {
 
     private Integer id;
