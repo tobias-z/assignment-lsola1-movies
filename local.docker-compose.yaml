@@ -5,6 +5,8 @@ services:
     image: bitnami/elasticsearch:latest
     environment:
       ELASTICSEARCH_PORT_NUMBER: 9200
+      discovery.type: single-node
+      bootstrap.memory_lock: true
     ports:
       - "9200:9200"
       - "9300:9300"
