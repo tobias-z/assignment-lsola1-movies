@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.tobiasz.assignmentlsola1movies.model.Product.PRODUCT_INDEX;
-import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
 @Service
 @RequiredArgsConstructor
@@ -29,13 +29,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDto> searchForProduct(String query) {
         Query searchQuery = new NativeSearchQueryBuilder()
-                .withFilter(multiMatchQuery(query, "title").fuzziness(Fuzziness.AUTO))
+                .withQuery(matchQuery("title", query)
+                        .fuzziness(Fuzziness.AUTO)
+                        .minimumShouldMatch("50%"))
                 .build();
 
         return this.elasticsearchOperations
                 .search(searchQuery, Product.class, IndexCoordinates.of(PRODUCT_INDEX))
                 .getSearchHits()
                 .stream()
+                .peek(productSearchHit -> {
+                    System.out.println(productSearchHit.getContent().getTitle() + ": " + productSearchHit.getScore());
+                })
                 .map(SearchHit::getContent)
                 .map(ProductDto::productToDto)
                 .collect(Collectors.toList());
