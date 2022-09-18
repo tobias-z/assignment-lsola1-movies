@@ -18,7 +18,7 @@ services:
     networks:
       - app-tier
     volumes:
-      - elastic:/usr/share/elasticsearch/data
+      - ./elastic:/usr/share/elasticsearch/data
   movies-app:
     container_name: movies-app
     image: tobiaszimmer/assignment-lsola1-movies:main
