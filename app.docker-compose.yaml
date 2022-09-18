@@ -5,10 +5,6 @@ services:
     image: bitnami/elasticsearch:latest
     environment:
       ELASTICSEARCH_PORT_NUMBER: 9200
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -18,7 +14,7 @@ services:
       - ./data/elastic:/usr/share/elasticsearch/data
   movies-app:
     restart: always
-    image: tobiaszimmer/assignment-lsola1-movies:main
+    image: tobiaszimmer/test:v1
     environment:
       MOVIES_ELASTIC_SEARCH_HOST: elasticsearch
       MOVIES_ELASTIC_SEARCH_PORT: 9200

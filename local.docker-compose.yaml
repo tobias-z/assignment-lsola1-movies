@@ -4,7 +4,7 @@ services:
   elasticsearch:
     image: bitnami/elasticsearch:latest
     environment:
-      - ELASTICSEARCH_PORT_NUMBER=9200
+      ELASTICSEARCH_PORT_NUMBER: 9200
     ports:
       - "9200:9200"
       - "9300:9300"
