@@ -12,5 +12,5 @@ import lombok.Setter;
 @Setter
 public class SearchResultsDto {
 
-	private List<ProductDto> results;
+    private List<ProductDto> results;
 }

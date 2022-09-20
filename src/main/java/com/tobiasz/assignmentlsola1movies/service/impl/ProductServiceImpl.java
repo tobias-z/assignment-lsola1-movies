@@ -21,22 +21,22 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-	private final ElasticsearchOperations elasticsearchOperations;
+    private final ElasticsearchOperations elasticsearchOperations;
 
-	@Override
-	public List<ProductDto> searchForProduct(String query) {
-		Query searchQuery = new NativeSearchQueryBuilder()
-			.withQuery(matchQuery("title", query)
-				.fuzziness(Fuzziness.AUTO)
-				.minimumShouldMatch("50%"))
-			.build();
+    @Override
+    public List<ProductDto> searchForProduct(String query) {
+        Query searchQuery = new NativeSearchQueryBuilder()
+            .withQuery(matchQuery("title", query)
+                .fuzziness(Fuzziness.AUTO)
+                .minimumShouldMatch("50%"))
+            .build();
 
-		return this.elasticsearchOperations
-			.search(searchQuery, Product.class, IndexCoordinates.of(PRODUCT_INDEX))
-			.getSearchHits()
-			.stream()
-			.map(SearchHit::getContent)
-			.map(ProductDto::productToDto)
-			.collect(Collectors.toList());
-	}
+        return this.elasticsearchOperations
+            .search(searchQuery, Product.class, IndexCoordinates.of(PRODUCT_INDEX))
+            .getSearchHits()
+            .stream()
+            .map(SearchHit::getContent)
+            .map(ProductDto::productToDto)
+            .collect(Collectors.toList());
+    }
 }

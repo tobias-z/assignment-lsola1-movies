@@ -14,14 +14,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductDto {
 
-	private Integer id;
-	private String title;
-	private String category;
+    private Integer id;
+    private String title;
+    private String category;
 
-	public static ProductDto productToDto(Product product) {
-		return ProductDto.builder()
-			.id(product.getId())
-			.title(product.getTitle())
-			.category(product.getCategory()).build();
-	}
+    public static ProductDto productToDto(Product product) {
+        return ProductDto.builder()
+            .id(product.getId())
+            .title(product.getTitle())
+            .category(product.getCategory()).build();
+    }
 }

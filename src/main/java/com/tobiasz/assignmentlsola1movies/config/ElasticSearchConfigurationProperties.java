@@ -13,9 +13,9 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class ElasticSearchConfigurationProperties {
 
-	@NotBlank
-	private String host;
+    @NotBlank
+    private String host;
 
-	@NotNull
-	private Integer port;
+    @NotNull
+    private Integer port;
 }

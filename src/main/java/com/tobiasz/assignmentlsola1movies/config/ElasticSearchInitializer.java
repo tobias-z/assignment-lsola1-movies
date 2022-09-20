@@ -20,28 +20,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class ElasticSearchInitializer {
 
-	private final ProductRepository productRepository;
-	private final ObjectMapper objectMapper;
+    private final ProductRepository productRepository;
+    private final ObjectMapper objectMapper;
 
-	@Value("classpath:products.json")
-	private Resource resourceFile;
+    @Value("classpath:products.json")
+    private Resource resourceFile;
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void initializeProducts() throws IOException {
-		this.productRepository.deleteAll();
-		this.productRepository.saveAll(this.getProductsToInitialize());
-	}
+    @EventListener(ApplicationReadyEvent.class)
+    public void initializeProducts() throws IOException {
+        this.productRepository.deleteAll();
+        this.productRepository.saveAll(this.getProductsToInitialize());
+    }
 
-	private List<Product> getProductsToInitialize() throws IOException {
-		return this.objectMapper.readValue(this.resourceFile.getInputStream(), ProductWrapper.class).getProducts();
-	}
+    private List<Product> getProductsToInitialize() throws IOException {
+        return this.objectMapper.readValue(this.resourceFile.getInputStream(), ProductWrapper.class).getProducts();
+    }
 
-	@AllArgsConstructor
-	@Getter
-	@Setter
-	@NoArgsConstructor
-	static class ProductWrapper {
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    static class ProductWrapper {
 
-		private List<Product> products;
-	}
+        private List<Product> products;
+    }
 }

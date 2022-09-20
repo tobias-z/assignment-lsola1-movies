@@ -18,14 +18,14 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Document(indexName = Product.PRODUCT_INDEX)
 public class Product {
 
-	public static final String PRODUCT_INDEX = "productindex";
+    public static final String PRODUCT_INDEX = "productindex";
 
-	@Id
-	private Integer id;
+    @Id
+    private Integer id;
 
-	@Field(type = FieldType.Text, name = "title")
-	private String title;
+    @Field(type = FieldType.Text, name = "title")
+    private String title;
 
-	@Field(type = FieldType.Text, name = "category")
-	private String category;
+    @Field(type = FieldType.Text, name = "category")
+    private String category;
 }

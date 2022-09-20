@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SearchController {
 
-	private final ProductService productService;
+    private final ProductService productService;
 
-	@GetMapping
-	public SearchResultsDto searchForProduct(@RequestParam("q") String query) {
-		List<ProductDto> productDtos = this.productService.searchForProduct(query);
-		return new SearchResultsDto(productDtos);
-	}
+    @GetMapping
+    public SearchResultsDto searchForProduct(@RequestParam("q") String query) {
+        List<ProductDto> productDtos = this.productService.searchForProduct(query);
+        return new SearchResultsDto(productDtos);
+    }
 }
