@@ -1,7 +1,11 @@
 package com.tobiasz.assignmentlsola1movies.dto;
 
 import com.tobiasz.assignmentlsola1movies.model.Product;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
@@ -10,14 +14,14 @@ import lombok.*;
 @NoArgsConstructor
 public class ProductDto {
 
-    private Integer id;
-    private String title;
-    private String category;
+	private Integer id;
+	private String title;
+	private String category;
 
-    public static ProductDto productToDto(Product product) {
-        return ProductDto.builder()
-                            .id(product.getId())
-                            .title(product.getTitle())
-                            .category(product.getCategory()) .build();
-    }
+	public static ProductDto productToDto(Product product) {
+		return ProductDto.builder()
+			.id(product.getId())
+			.title(product.getTitle())
+			.category(product.getCategory()).build();
+	}
 }

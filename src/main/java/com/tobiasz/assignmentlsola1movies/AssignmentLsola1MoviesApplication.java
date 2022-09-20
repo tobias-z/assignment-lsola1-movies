@@ -9,5 +9,4 @@ public class AssignmentLsola1MoviesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AssignmentLsola1MoviesApplication.class, args);
 	}
-
 }
